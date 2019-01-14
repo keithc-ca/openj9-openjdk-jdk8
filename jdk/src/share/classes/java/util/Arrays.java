@@ -22,6 +22,11 @@
  * or visit www.oracle.com if you need additional information or have any
  * questions.
  */
+/*
+ * ===========================================================================
+ * (c) Copyright IBM Corp. 2019, 2019 All Rights Reserved.
+ * ===========================================================================
+ */
 
 package java.util;
 
@@ -141,6 +146,9 @@ public class Arrays {
      * @param a the array to be sorted
      */
     public static void sort(int[] a) {
+        if (GPUAssistHolder.instance.trySort(a, 0, a.length)) {
+            return;
+        }
         DualPivotQuicksort.sort(a, 0, a.length - 1, null, 0, 0);
     }
 
@@ -166,6 +174,9 @@ public class Arrays {
      */
     public static void sort(int[] a, int fromIndex, int toIndex) {
         rangeCheck(a.length, fromIndex, toIndex);
+        if (GPUAssistHolder.instance.trySort(a, fromIndex, toIndex)) {
+            return;
+        }
         DualPivotQuicksort.sort(a, fromIndex, toIndex - 1, null, 0, 0);
     }
 
@@ -181,6 +192,9 @@ public class Arrays {
      * @param a the array to be sorted
      */
     public static void sort(long[] a) {
+        if (GPUAssistHolder.instance.trySort(a, 0, a.length)) {
+            return;
+        }
         DualPivotQuicksort.sort(a, 0, a.length - 1, null, 0, 0);
     }
 
@@ -206,6 +220,9 @@ public class Arrays {
      */
     public static void sort(long[] a, int fromIndex, int toIndex) {
         rangeCheck(a.length, fromIndex, toIndex);
+        if (GPUAssistHolder.instance.trySort(a, fromIndex, toIndex)) {
+            return;
+        }
         DualPivotQuicksort.sort(a, fromIndex, toIndex - 1, null, 0, 0);
     }
 
@@ -349,6 +366,9 @@ public class Arrays {
      * @param a the array to be sorted
      */
     public static void sort(float[] a) {
+        if (GPUAssistHolder.instance.trySort(a, 0, a.length)) {
+            return;
+        }
         DualPivotQuicksort.sort(a, 0, a.length - 1, null, 0, 0);
     }
 
@@ -382,6 +402,9 @@ public class Arrays {
      */
     public static void sort(float[] a, int fromIndex, int toIndex) {
         rangeCheck(a.length, fromIndex, toIndex);
+        if (GPUAssistHolder.instance.trySort(a, fromIndex, toIndex)) {
+            return;
+        }
         DualPivotQuicksort.sort(a, fromIndex, toIndex - 1, null, 0, 0);
     }
 
@@ -405,6 +428,9 @@ public class Arrays {
      * @param a the array to be sorted
      */
     public static void sort(double[] a) {
+        if (GPUAssistHolder.instance.trySort(a, 0, a.length)) {
+            return;
+        }
         DualPivotQuicksort.sort(a, 0, a.length - 1, null, 0, 0);
     }
 
@@ -438,6 +464,9 @@ public class Arrays {
      */
     public static void sort(double[] a, int fromIndex, int toIndex) {
         rangeCheck(a.length, fromIndex, toIndex);
+        if (GPUAssistHolder.instance.trySort(a, fromIndex, toIndex)) {
+            return;
+        }
         DualPivotQuicksort.sort(a, fromIndex, toIndex - 1, null, 0, 0);
     }
 
