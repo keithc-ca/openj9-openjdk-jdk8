@@ -159,7 +159,7 @@ static void printErrors(void) {
  * Signature: ()I
  */
 JNIEXPORT jint JNICALL Java_jdk_crypto_jniprovider_NativeCrypto_loadCrypto
-  (JNIEnv *env, jclass thisObj){
+  (JNIEnv *env, jclass thisObj) {
 
     void *handle = NULL;
     typedef const char* OSSL_version_t(int);
@@ -915,7 +915,6 @@ JNIEXPORT jint JNICALL Java_jdk_crypto_jniprovider_NativeCrypto_GCMEncrypt
         return -1;
     }
 
-
     (*OSSL_CIPHER_CTX_free)(ctx);
 
     (*env)->ReleasePrimitiveArrayCritical(env, key, keyNative, JNI_ABORT);
@@ -1104,7 +1103,6 @@ JNIEXPORT jint JNICALL Java_jdk_crypto_jniprovider_NativeCrypto_GCMDecrypt
         }
         return -1;
     }
-
 
     ret = (*OSSL_DecryptFinal)(ctx, outputNative + outOffset + len, &len);
 
@@ -1531,9 +1529,9 @@ typedef struct rsa_st102 {
     char *bignum_data;
     BN_BLINDING *blinding;
     BN_BLINDING *mt_blinding;
-}OSSL102_RSA;
+} OSSL102_RSA;
 
-/* 
+/*
  * Compatibility Layer for RSA algorithim using OpenSSL 1.0.2
  * https://wiki.openssl.org/index.php/OpenSSL_1.1.0_Changes#Compatibility_Layer
  */
@@ -1615,4 +1613,3 @@ int OSSL102_RSA_set0_crt_params(RSA *r2, BIGNUM *dmp1, BIGNUM *dmq1, BIGNUM *iqm
 
     return 1;
 }
-

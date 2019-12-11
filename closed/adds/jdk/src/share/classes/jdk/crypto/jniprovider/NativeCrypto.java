@@ -36,31 +36,30 @@ public class NativeCrypto {
 
     private static final boolean loaded = AccessController.doPrivileged(
             (PrivilegedAction<Boolean>) () -> {
-            Boolean isLoaded = Boolean.FALSE;
-            try {
-                System.loadLibrary("jncrypto"); // check for native library
-                // load OpenSSL crypto library dynamically.
-                if (loadCrypto() == 0) {
-                    isLoaded = Boolean.TRUE;
+                Boolean isLoaded = Boolean.FALSE;
+                try {
+                    System.loadLibrary("jncrypto"); // check for native library
+                    // load OpenSSL crypto library dynamically.
+                    if (loadCrypto() == 0) {
+                        isLoaded = Boolean.TRUE;
+                    }
+                } catch (UnsatisfiedLinkError usle) {
+                    // Return that isLoaded is false (default set above)
                 }
-            } catch (UnsatisfiedLinkError usle) { 
-                // Return that isLoaded is false (default set above)
-            }
-            
-            return isLoaded;
-        }).booleanValue();
-    
+
+                return isLoaded;
+            }).booleanValue();
+
     public static final boolean isLoaded() {
         return loaded;
     }
-    
+
     private NativeCrypto() {
         //empty
     }
 
     @CallerSensitive
     public static NativeCrypto getNativeCrypto() {
-
         ClassLoader callerClassLoader = Reflection.getCallerClass().getClassLoader();
 
         if ((callerClassLoader != null) && (callerClassLoader != VM.getVMLangAccess().getExtClassLoader())) {

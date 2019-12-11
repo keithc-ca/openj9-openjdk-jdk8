@@ -53,7 +53,7 @@ void * load_crypto_library() {
         char libpathname[MAX_PATH];
         int rc;
         struct stat s;
-        
+
         rc = JLI_Snprintf(libpathname, sizeof(libpathname), "%s\\bin\\%s", opensslpath, libname);
         if ((rc > 0) && (rc <= MAX_PATH) && (stat(libpathname, &s) == 0)) {
             result = LoadLibrary(libpathname);
@@ -120,7 +120,6 @@ jboolean
 GetJREPath(char *path, jint pathsize)
 {
     if (GetApplicationHome(path, pathsize)) {
-    
         char javadll[MAX_PATH];
         struct stat s;
         int rc;

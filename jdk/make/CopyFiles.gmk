@@ -251,14 +251,14 @@ endif
 
 ##########################################################################################
 # Optionally copy OpenSSL Crypto Lbrary
-# To bundle first search for openssl 1.1.x library, if not found, search for 1.0.x 
+# To bundle first search for openssl 1.1.x library, if not found, search for 1.0.x
 ifneq ($(OPENSSL_BUNDLE_LIB_PATH), )
   ifeq ($(OPENJDK_TARGET_OS), linux)
     OPENSSL_LIB_NAME = libcrypto.so.1.1
     ifeq ("$(wildcard $(OPENSSL_BUNDLE_LIB_PATH)/$(OPENSSL_LIB_NAME))", "")
       OPENSSL_LIB_NAME = libcrypto.so.1.0.0
       ifeq ("$(wildcard $(OPENSSL_BUNDLE_LIB_PATH)/$(OPENSSL_LIB_NAME))", "")
-        OPENSSL_LIB_NAME = 
+        OPENSSL_LIB_NAME =
       endif
     endif
   else ifeq ($(OPENJDK_TARGET_OS), macosx)
@@ -266,7 +266,7 @@ ifneq ($(OPENSSL_BUNDLE_LIB_PATH), )
     ifeq ("$(wildcard $(OPENSSL_BUNDLE_LIB_PATH)/$(OPENSSL_LIB_NAME))", "")
       OPENSSL_LIB_NAME = libcrypto.1.0.0.dylib
       ifeq ("$(wildcard $(OPENSSL_BUNDLE_LIB_PATH)/$(OPENSSL_LIB_NAME))", "")
-        OPENSSL_LIB_NAME = 
+        OPENSSL_LIB_NAME =
       endif
     endif
   else ifeq ($(OPENJDK_TARGET_OS), windows)
@@ -278,7 +278,7 @@ ifneq ($(OPENSSL_BUNDLE_LIB_PATH), )
     ifeq ("$(wildcard $(OPENSSL_BUNDLE_LIB_PATH)/$(OPENSSL_LIB_NAME))", "")
       OPENSSL_LIB_NAME = libeay32.dll
       ifeq ("$(wildcard $(OPENSSL_BUNDLE_LIB_PATH)/$(OPENSSL_LIB_NAME))", "")
-        OPENSSL_LIB_NAME = 
+        OPENSSL_LIB_NAME =
       endif
     endif
   else ifeq ($(OPENJDK_TARGET_OS), aix)
@@ -297,7 +297,7 @@ ifneq ($(OPENSSL_BUNDLE_LIB_PATH), )
       endif
     endif
   else
-    OPENSSL_LIB_NAME = 
+    OPENSSL_LIB_NAME =
   endif
 
   ifneq ($(OPENSSL_LIB_NAME), )
